@@ -94,7 +94,7 @@ def crear_estudiante(request):
 @permission_required('administrativo.change_estudiante', login_url="/entrando/login/")
 def editar_estudiante(request, id):
     """
-    """
+    """     
     estudiante = Estudiante.objects.get(pk=id)
     if request.method=='POST':
         formulario = EstudianteForm(request.POST, instance=estudiante)
@@ -117,6 +117,9 @@ def eliminar_estudiante(request, id):
     return redirect(index)
 
 
+@login_required(login_url='/entrando/login/')
+# @permission_required('administrativo.add_estudiante', )
+@permission_required('administrativo.add_numero_telefonico', login_url="/entrando/login/")
 def crear_numero_telefonico(request):
     """
     """
